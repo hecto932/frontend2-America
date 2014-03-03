@@ -22,6 +22,7 @@ body
 	color gris_oscuro
 	font-family Arial
 	font-size 16px
+	transition font-size 1s
 
 footer
 	background naranja
@@ -42,7 +43,14 @@ footer
 			&:after
 				content "-"
 				
-				
+
+form
+	display none
+	padding 0.8em
+
+	label
+		display inline-block
+		width 60px				
 
 header
 	background gris_oscuro
@@ -85,9 +93,12 @@ header
 				font-family "iconitos"
 				margin 0 3px 0 0
 				text-shadow none
-
+		
+		.sizer
+			text-decoration none
+			
 		.titulo
-			font-size 18px
+			font-size 1.1em
 			font-weight normal
 			margin 0
 			padding 0
@@ -207,12 +218,12 @@ nav
 				.down
 					color red
 					&:before
-						content "\e602"
+						content "\e603"
 
 				.up
 					color green
 					&:before
-						content "\e603"
+						content "\e602"
 		.descripcion
 			
 			.detalles

@@ -21,7 +21,8 @@ $(document).ready(function(){
 		
 		view.render();
 
-		view.$el.prependTo('.posts');
+		$('.posts').prepend(view.$el.fadeIn());
+		//view.$el.prependTo('.posts');
 	});
 
 	//Voy al server a pedir los articulos creados

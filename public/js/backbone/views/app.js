@@ -7,7 +7,7 @@ Puls3.Views.App = Backbone.View.extend({
 		this.$el = $el;
 	},
 	showForm : function(){
-		this.$el.find('form').show();
+		this.$el.find('form').slideToggle();
 	},
 	createArticle : function(e){
 		e.preventDefault();
@@ -29,5 +29,6 @@ Puls3.Views.App = Backbone.View.extend({
 		var model = new Puls3.Models.Article(data);
 
 		model.save();
+		$('form').slideToggle();
 	}
 });

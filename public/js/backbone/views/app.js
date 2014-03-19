@@ -1,12 +1,17 @@
 Puls3.Views.App = Backbone.View.extend({
 	events : {
 		"click .publicar" : "showForm",
-		"submit form" : "createArticle"
+		"submit form" : "createArticle",
+		'click .logo' : 'navigateHome'
 	},
 	initialize : function($el){
 		this.$el = $el;
 	},
-	showForm : function(){
+	navigateHome : function(){
+		Backbone.history.navigate('/', { trigger : true });
+	},
+	showForm : function(e){
+		e.preventDefault();
 		this.$el.find('form').slideToggle();
 	},
 	createArticle : function(e){
@@ -18,17 +23,19 @@ Puls3.Views.App = Backbone.View.extend({
 
 		var data = {
 			"title" : titulo,
-			"image" : "/img/img4.jpg",
-			"user"	: autor,
-			"tag"	: tag,
-			"votes"	: 0
+			"image" : "/img/img3.jpg",
+			"user"  : autor,
+			"tag"   : tag,
+			"votes" : 0,
 		};
 
-		console.log(data);
-
+		console.log(data.user);
+		
 		var model = new Puls3.Models.Article(data);
 
 		model.save();
-		$('form').slideToggle();
+
+		this.$el.find('form input[type=text]').val();
+		this.$el.find('form').slideToggle();
 	}
 });

@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	console.log('main.js loaded');
 
+	window.views.app = new Puls3.Views.App ( $('body') );
+	window.routers.base = new Puls3.Routers.Base();
 	window.ponyExpress = new PonyExpress({
 		io : window.location.origin
 	});
@@ -11,22 +13,24 @@ $(document).ready(function(){
 		});
 	});
 
-	window.views.app = new Puls3.Views.App ( $('body') );
-
 	window.collections.articles = new Puls3.Collections.Articles();
-
 	window.collections.articles.on('add', function(model) {
 		//Agregando nuevas vistas de articulos
 		var view = new Puls3.Views.Article({ model: model });
-		
 		view.render();
-
-		$('.posts').prepend(view.$el.fadeIn());
-		//view.$el.prependTo('.posts');
+		$('.posts').prepend(view.$el);
 	});
 
 	//Voy al server a pedir los articulos creados
 	//Estoy hace un AjaxRequest a /articules/ al server
-	window.collections.articles.fetch();
+	var xhr = window.collections.articles.fetch();
+
+	xhr.done(function(){
+		Backbone.history.start({
+			root : '/',
+			pushState : true
+		});
+	});	
+
 
 });
